@@ -1,0 +1,97 @@
+.main {
+  background-color: #f2f2f2;
+  position: relative;
+  height: 200vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+}
+
+.header {
+  height: 45vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container {
+  display: flex;
+  background-color: #fff;
+  padding: 0.5vh;
+  border-radius: 2vh;
+  margin-top: -3vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 25vh;
+  height: 17vh;
+}
+
+.instruction {
+  width: 55vw;
+  text-align: center;
+  font-size: 2.3vw;
+  color: #ffffff;
+  margin-top: 3.5vh;
+  font-weight: 600;
+  margin-bottom: 7vh;
+}
+
+.qr-section {
+  position: absolute;
+  top: 35vh; /* Ajuste aqui para mover a div para cima ou para baixo */
+  left: 5vw;
+
+  width: 90vw;
+  height: 100vh;
+  display: flex;
+  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 12px;
+  align-self: center;
+}
+
+.qr-code {
+  width: 30vh;
+  margin-top: 5vh;
+}
+
+.qr-value {
+  font-size: 8vw;
+  font-weight: 700;
+  color: #1d1d1b;
+}
+
+.small-text {
+  font-size: 1.8vw;
+  margin-top: -6vh;
+  color: grey;
+  justify-content: center;
+}
+
+.copy-paste-code {
+  font-size: 1.8vh;
+  word-break: break-all;
+  width: 40vh;
+}
+
+.copy-btn {
+  margin-top: 1vh;
+  background-color: #038ddd;
+  color: white;
+  font-weight: 600;
+  font-size: 1.5vh;
+  height: 7vh;
+  width: 14vh;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5vh;
+  padding: 1vh;
+}
