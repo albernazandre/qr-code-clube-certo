@@ -1,51 +1,76 @@
-import React, { useState, useEffect, } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QRCode from "react-qr-code";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useParams } from 'react-router-dom';
-import './App.css'; // Importar o arquivo CSS
+import { useParams, useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import './App.css';
 
 export default function App() {
-  const { id, qrcode, } = useParams();
 
+  const { id, jwt } = useParams();
+  const navigate = useNavigate();
+
+  const [ price, setPrice ] = useState(null);
+  const [ qrCode, setQrCode ] = useState(null);
   const [ logo, setLogo ] = useState(null);
   const [ backgroundColor, setBackgroundColor ] = useState(null);
-  const [ price, setPrice ] = useState(null);
-  const [ token, setToken ] = useState(null);
+  const [ userData, setUserData ] = useState(null);
+  const [ payed, setPayed ] = useState(null);
+
 
   useEffect(() => {
-    axios.get(``)
-      .then((response) => {
-        const { value, qrcodeData } = response.data;
+    const fetchData = () => {
+      // Decode jwt
+      const decodedToken = jwt_decode(jwt);
 
-        setPrice(value);
-        setToken(qrcodeData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      // Fetch first API
+      axios.get(`https://node.clubecerto.com.br/superapp/pay/payment/status/${ id }`, { headers: { Authorization: `Bearer ${ jwt }` } })
+        .then((response) => {
+          // Update states first
+          setPrice(response.data.value);
+          setQrCode(response.data.qrCode);
+          setPayed(response.data.paidAt)
+
+          // Convert string to Date
+          const expireAt = new Date(response.data.expireAt);
+          const now = new Date();
+
+          // If qrcode is expired
+          if (now > expireAt) {
+            navigate("/expired");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      setLogo(decodedToken.selectedCompany.companiesImage.image);
+      setBackgroundColor(decodedToken.selectedCompany.companiesColor.backgroundColor);
+      setUserData(decodedToken);
+    };
+
+    fetchData();
+
   }, []);
 
-
   useEffect(() => {
-    axios.get(`https://node.clubecerto.com.br/superapp/locations/company/${ id }`)
-      .then((response) => {
-        const { image, backgroundColor } = response.data;
-        setLogo(image);
-        setBackgroundColor(backgroundColor);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [ id ]);
+    if (payed === 'paid') {
+      if (window.confirm('Pagamento realizado com sucesso! Você será redirecionado.')) {
+        window.location.href = 'https://clubecerto.com.br/';
+      }
+    }
+    if (payed === 'waiting') {
+      window.alert('Aguarde, seu pagamento está sendo processado...');
+    }
+
+  }, [ payed ]);
 
 
   const copyCode = async (token) => {
     try {
-      await
-        navigator.clipboard.writeText(token);
-
+      await navigator.clipboard.writeText(token);
       toast.success("Código Copiado!", {
         position: "bottom-center",
         autoClose: 2000,
@@ -56,7 +81,6 @@ export default function App() {
   };
 
   return (
-
     <div className="main">
       <div className="header" style={ { backgroundColor: backgroundColor } }>
         <div className='image-container'>
@@ -66,23 +90,23 @@ export default function App() {
           Falta pouco! Escaneie o código QR pelo seu app de pagamentos ou Internet Banking
         </p>
       </div>
-
-      { price && qrcode && token ? (
-        <div className="qr-section">
+      <div className="qr-section">
+        { qrCode ? (
           <QRCode
             className='qr-code'
-            value={ qrcode }
+            value={ qrCode }
             viewBox={ `0 0 256 256` }
           />
-          <p className="qr-value">R$ { price }</p>
-          <p className="small-text">Se preferir, você pode pagá-lo copiando e colando o código abaixo:</p>
-          <p className="copy-paste-code">{ token }</p>
-          <button className="copy-btn" onClick={ () => copyCode(token) }>Copiar código</button>
-          <ToastContainer></ToastContainer>
-        </div>
-      ) : (
-        <h1 style={ { textAlign: 'center', marginTop: '2rem' } }>Not Found</h1>
-      ) }
+        ) : (
+          <p>Loading...</p>
+        ) }
+        <p className="qr-value">R$ { price }</p>
+        <p className="small-text">Se preferir, você pode pagá-lo copiando e colando o código abaixo:</p>
+        <p className="copy-paste-code">{ qrCode }</p>
+        <button className="copy-btn" onClick={ () => copyCode(qrCode) }>Copiar código</button>
+        <ToastContainer></ToastContainer>
+      </div>
+      <h1 style={ { textAlign: 'center', marginTop: '2rem' } }>Not Found</h1>
     </div>
   );
 }
