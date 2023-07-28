@@ -1,14 +1,14 @@
 .main {
   background-color: #f2f2f2;
   position: relative;
-  height: 200vh;
-  width: 100vw;
+  height: 2000px;
+  width: 100%;
   overflow: hidden;
   font-family: "Roboto", sans-serif;
 }
 
 .header {
-  height: 45vh;
+  height: 450px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -19,35 +19,35 @@
 .image-container {
   display: flex;
   background-color: #fff;
-  padding: 0.5vh;
-  border-radius: 2vh;
-  margin-top: -3vh;
+  padding: 5px;
+  border-radius: 20px;
+  margin-top: -30px;
   align-items: center;
   justify-content: center;
 }
 
 .logo {
-  width: 29vh;
-  height: 17vh;
+  width: 290px;
+  height: 170px;
 }
 
 .instruction {
-  width: 55vw;
+  width: 55%;
   text-align: center;
-  font-size: 2.3vw;
+  font-size: 23px;
   color: #ffffff;
-  margin-top: 3.5vh;
+  margin-top: 35px;
   font-weight: 600;
-  margin-bottom: 7vh;
+  margin-bottom: 70px;
 }
 
 .qr-section {
   position: absolute;
-  top: 35vh; /* Ajuste aqui para mover a div para cima ou para baixo */
-  left: 5vw;
+  top: 350px;
+  left: 5%;
 
-  width: 90vw;
-  height: 100vh;
+  width: 90%;
+  height: 1000px;
   display: flex;
   background-color: #fff;
   flex-direction: column;
@@ -58,40 +58,143 @@
 }
 
 .qr-code {
-  width: 30vh;
-  margin-top: 5vh;
+  width: 300px;
+  margin-top: 50px;
 }
 
 .qr-value {
-  font-size: 8vw;
+  font-size: 80px;
   font-weight: 700;
   color: #1d1d1b;
 }
 
 .small-text {
-  font-size: 1.8vw;
-  margin-top: -6vh;
+  font-size: 18px;
+  margin-top: -60px;
   color: grey;
   justify-content: center;
 }
 
 .copy-paste-code {
-  font-size: 1.8vh;
+  font-size: 25px;
+  width: 60vw;
   word-break: break-all;
-  width: 40vh;
 }
 
 .copy-btn {
-  margin-top: 1vh;
+  margin-top: 10px;
   background-color: #038ddd;
   color: white;
   font-weight: 600;
-  font-size: 1.5vh;
-  height: 7vh;
-  width: 14vh;
+  font-size: 15px;
+  height: 70px;
+  width: 140px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 5vh;
-  padding: 1vh;
+  margin-bottom: 50px;
+  padding: 10px;
+}
+
+/* Para dispositivos com largura de tela menor que 768px */
+
+@media (max-width: 768px) {
+  /* Insira aqui os estilos específicos para dispositivos móveis */
+
+  .main {
+    background-color: #f2f2f2;
+    position: relative;
+    height: 2000px;
+    width: 100%;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .header {
+    height: 450px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-container {
+    display: flex;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 20px;
+    margin-top: -30px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo {
+    width: 290px;
+    height: 170px;
+  }
+
+  .instruction {
+    width: 55%;
+    text-align: center;
+    font-size: 23px;
+    color: #ffffff;
+    margin-top: 35px;
+    font-weight: 600;
+    margin-bottom: 70px;
+  }
+
+  .qr-section {
+    position: absolute;
+    top: 350px;
+    left: 5%;
+
+    width: 90%;
+    height: 1000px;
+    display: flex;
+    background-color: #fff;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 12px;
+    align-self: center;
+  }
+
+  .qr-code {
+    width: 300px;
+    margin-top: 50px;
+  }
+
+  .qr-value {
+    font-size: 80px;
+    font-weight: 700;
+    color: #1d1d1b;
+  }
+
+  .small-text {
+    font-size: 18px;
+    margin-top: -60px;
+    color: grey;
+    justify-content: center;
+  }
+
+  .copy-paste-code {
+    font-size: 10px;
+    word-break: break-all;
+  }
+
+  .copy-btn {
+    margin-top: 10px;
+    background-color: #038ddd;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    height: 70px;
+    width: 140px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 50px;
+    padding: 10px;
+  }
 }
