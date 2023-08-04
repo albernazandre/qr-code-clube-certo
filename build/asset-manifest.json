@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/pay/qrpayment/static/css/main.79b24463.css",
-    "main.js": "/pay/qrpayment/static/js/main.85255510.js",
+    "main.js": "/pay/qrpayment/static/js/main.32564152.js",
     "static/media/expired.png": "/pay/qrpayment/static/media/expired.b1e9200868071de79d28.png",
     "index.html": "/pay/qrpayment/index.html",
     "main.79b24463.css.map": "/pay/qrpayment/static/css/main.79b24463.css.map",
-    "main.85255510.js.map": "/pay/qrpayment/static/js/main.85255510.js.map"
+    "main.32564152.js.map": "/pay/qrpayment/static/js/main.32564152.js.map"
   },
   "entrypoints": [
     "static/css/main.79b24463.css",
-    "static/js/main.85255510.js"
+    "static/js/main.32564152.js"
   ]
 }
