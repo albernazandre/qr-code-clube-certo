@@ -104,7 +104,7 @@ export default function App() {
     const id = setInterval(() => {
       fetchData();
     }, 5000);
-
+    fetchData();
     setIntervalId(id);
 
     // Certifique-se de limpar o intervalo quando o componente for desmontado
